@@ -1,0 +1,8 @@
+:host {
+  height: 50%;
+  width: 100%;
+}
+
+:host ::ng-deep .p-menu {
+  width: 100%;
+}

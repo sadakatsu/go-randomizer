@@ -1,0 +1,139 @@
+<div class="container h-100">
+    <div class="row h-100">
+        <div class="col-3 h-100 text-center">
+            <h2>Go Randomizer</h2>
+            <p-menu [model]="menuOptions"></p-menu>
+        </div>
+        <div class="col-9 h-100">
+            <gr-wgo></gr-wgo>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="dialogActive">
+    <p-dialog
+        position="top"
+        [blockScroll]="true"
+        [closable]="false"
+        [closeOnEscape]="false"
+        [draggable]="false"
+        [modal]="true"
+        [resizable]="false"
+        [style]="{ minWidth: '33vw', maxWidth: '75vw' }"
+        [visible]="true"
+    >
+        <p-header>
+            Set Game Settings
+        </p-header>
+
+        <form>
+            <div class="form-group">
+                <label for="handicap">Handicap</label>
+                <input
+                    class="form-control"
+                    id="handicap"
+                    type="number"
+                    min="0"
+                    max="9"
+                    name="handicap"
+                    [valueAsNumber]="handicap"
+                    [(ngModel)]="handicap"
+                >
+            </div>
+            <div class="form-group">
+                <p>You play</p>
+                <div class="form-check">
+                    <input
+                        class="form-check-input"
+                        id="black"
+                        name="color"
+                        type="radio"
+                        value="B"
+                        [(ngModel)]="color"
+                    >
+                    <label for="black" class="form-check-label">Black</label>
+                </div>
+                <div class="form-check">
+                    <input
+                        class="form-check-input"
+                        id="white"
+                        name="color"
+                        type="radio"
+                        value="W"
+                        [(ngModel)]="color"
+                    >
+                    <label for="white" class="form-check-label">White</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="initial">Initial random moves</label>
+                <input
+                    class="form-control"
+                    id="initial"
+                    type="number"
+                    min="0"
+                    max="25"
+                    name="initial"
+                    [valueAsNumber]="initial"
+                    [(ngModel)]="initial"
+                >
+            </div>
+            <div class="form-group">
+                <p>Inject additional random moves</p>
+                <div class="form-check">
+                    <input
+                        class="form-check-input"
+                        id="probability"
+                        name="additional"
+                        type="radio"
+                        value="probability"
+                        [(ngModel)]="additional"
+                    >
+                    <label for="probability" class="form-check-label">with the probability</label>
+                </div>
+                <div class="form-check">
+                    <input
+                        class="form-check-input"
+                        id="frequency"
+                        name="additional"
+                        type="radio"
+                        value="frequency"
+                        [(ngModel)]="additional"
+                    >
+                    <label for="frequency" class="form-check-label">after N moves</label>
+                </div>
+            </div>
+            <div class="form-group">
+               <input
+                    class="form-control"
+                    id="injection"
+                    type="number"
+                    min="0"
+                    max="100"
+                    name="injection"
+                    [valueAsNumber]="injection"
+                    [(ngModel)]="injection"
+                >
+            </div>
+        </form>
+
+        <p-footer>
+            <button
+                class="btn btn-success"
+                type="button"
+                (click)="startNewGame()"
+            >
+                <i class="pi pi-fw pi-check-circle"></i>
+                Start!
+            </button>
+            <button
+                class="btn btn-danger"
+                type="button"
+                (click)="cancelDialog()"
+            >
+                <i class="pi pi-fw pi-times-circle"></i>
+                Cancel
+            </button>
+        </p-footer>
+    </p-dialog>
+</div>
